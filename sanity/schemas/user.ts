@@ -6,19 +6,22 @@ export default defineType({
     title: 'User',
     fields: [
         {
-            name: 'name',
+            name: 'username',
             type: 'string',
-            title: 'Name'
+            title: 'Name',
+            validation: Rule => Rule.required()
         },
         {
             name: 'email',
             type: 'string',
-            title: 'Email'
+            title: 'Email',
+            validation: Rule => Rule.required()
         },
         {
             name: 'password',
             type: 'string',
-            title: 'Password'
+            title: 'Password',
+            validation: Rule => Rule.required()
         },
         {
             name: 'userImage',

@@ -15,7 +15,7 @@ const authReducer = createSlice({
     builder
       .addCase(postLogin.fulfilled, (state, action) => {
         console.log(action.payload, 'aaaaaaaaa');
-        state.user = action.payload
+        // state.user = action.payload
 
         // state.user = action.payload.data;
         // state.token = action.payload.token;

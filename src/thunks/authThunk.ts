@@ -1,26 +1,31 @@
 import client from "@/sanityConfig";
+import { LoginType, SignupType } from "@/tsTypes";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from 'axios'
 // import * as services from "../services";
 // import { toast } from "react-toastify";
 
-export const postLogin = createAsyncThunk("postSignup", async (payload) => {
+export const postLogin = createAsyncThunk("postLogin", async (payload:LoginType) => {
 
   try {
-    const res = await client.fetch(`*[_type == "user"]`);
+    const res = await axios.post('/api/login', payload)
     return res
   } catch (error) {
     console.log(error)
   }
+});
 
-  // const data = await services.postSignup(payload.data);
-  // if (data.data) {
-  //   // toast.success(data.message);
-  //   localStorage.setItem("socioPlusToken", data.token);
-  // } else {
-  //   // toast.error(data.message);
-  //   throw new Error();
-  // }
-  // return data;
+
+export const postSignup = createAsyncThunk("postSignup", async (payload: SignupType) => {
+  console.log({ payload })
+  try {
+    const res = await axios.post('/api/signup', payload)
+    console.log({ res })
+    // client.create({ ...payload, _type: 'user' },)
+    return res
+  } catch (error) {
+    console.log(error)
+  }
 });
 
 // export const postLogin = createAsyncThunk("postLogin", async (payload) => {
