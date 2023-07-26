@@ -24,16 +24,12 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ message: "Invalid password" }, { status: 400 })
         }
 
-
-
-
         const response = NextResponse.json({
             message: "Login successful",
             success: true,
             user,
 
         }, { status: 200 })
-
 
         createAndSetToken({ ...user, response })
 

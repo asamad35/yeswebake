@@ -2,9 +2,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 import { postLogin } from "@/thunks/authThunk";
 
 const initialState = {
-  user: {},
 };
-
 const authReducer = createSlice({
   name: "authReducer",
   initialState,
@@ -14,7 +12,7 @@ const authReducer = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(postLogin.fulfilled, (state, action) => {
-        console.log(action.payload, 'aaaaaaaaa');
+        console.log('====================================', { payload: action.payload }, '=====================================');
         // state.user = action.payload
 
         // state.user = action.payload.data;
