@@ -2,18 +2,20 @@ import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken"
 import bcryptjs from "bcryptjs"
 import client from "@/sanityConfig";
+import { createAndSetToken } from "@/helpers/createAndSetToken";
 
 export async function POST(request: NextRequest) {
-
     try {
+
         const { email, password } = await request.json();
         // check if user exist by email
         const user = await client.fetch(
-            `*[_type == "user" && email == $email] {email, username, userImage} [0]`, { email }
+            `*[_type == "user" && email == $email]{email, username, userImage, password}[0]`, { email }
         );
         if (!user) {
             return NextResponse.json({ message: "User does not exist" }, { status: 400 })
         }
+        console.log({ email, password, user });
 
         // check password
         const validPassword = await bcryptjs.compare(password, user.password)
@@ -22,17 +24,19 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ message: "Invalid password" }, { status: 400 })
         }
 
-        // create token
-        const tokenData = { id: user._id, email: user.email, username: user.username }
-        const token = jwt.sign(tokenData, process.env.JWT_TOKEN_SECRET!, { expiresIn: '1d' })
+
+
 
         const response = NextResponse.json({
             message: "Login successful",
             success: true,
-            user
+            user,
+
         }, { status: 200 })
 
-        response.cookies.set('token', token, { httpOnly: true })
+
+        createAndSetToken({ ...user, response })
+
         return response
 
     }
