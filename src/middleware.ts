@@ -6,9 +6,7 @@ export function middleware(request: NextRequest) {
     const path = request.nextUrl.pathname;
     const isPublicPath = path === '/login' || path === '/signup';
 
-    const encodedToken = request.cookies.get('next-auth.session-token')?.value || '';
-
-    console.log({ encodedToken })
+    const encodedToken = request.cookies.get('next-auth.session-token')?.value || request.cookies.get('token')?.value || '';
 
     if (isPublicPath && encodedToken) {
         return NextResponse.redirect(new URL('/home', request.url))
@@ -21,5 +19,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-    matcher: ['/', '/profile', '/profile/:path*', '/login', '/signup',],
+    matcher: ['/', '/home', '/profile', '/profile/:path*', '/login', '/signup',],
 }

@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import bcryptjs from 'bcryptjs';
 import client from '@/sanityConfig';
-// import { sendEmail } from "@/helpers/mailer";
+import { createAndSetToken } from '@/helpers/createAndSetToken';
 
 
 export async function POST(request: NextRequest) {
     try {
         const reqBody = await request.json();
         const { username, email, password } = reqBody;
-        console.log({ username, email, password }, 'addddddddddddddd');
 
         //check if user already exists
 
@@ -26,13 +25,12 @@ export async function POST(request: NextRequest) {
 
         const newUser = await client.create({ username, email, password: hashPassword, _type: 'user' },)
 
-
-
         console.log(newUser);
+        const response = NextResponse.json({ newUser, success: true, message: "user created successfully" }, { status: 200 })
 
-        // send email
-        // await sendEmail({email, emailType: "VERIFY", userId: savedUser._id})
-        return NextResponse.json({ newUser, success: true, message: "user created successfully" })
+        createAndSetToken({ ...newUser, response })
+
+        return response
     }
     catch (error: any) {
         console.log(error)
