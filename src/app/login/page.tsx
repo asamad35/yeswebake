@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { signIn, signOut, useSession, } from "next-auth/react";
-import client from "@/sanityConfig";
-import { postLogin } from "@/thunks/authThunk";
+import { postForgotPassword, postLogin } from "@/thunks/authThunk";
 import { useAppDispatch } from "@/redux/hooks";
 import { LoginInterface } from "@/tsTypes";
 import { useRouter } from 'next/navigation'
@@ -48,6 +47,10 @@ const LoginPage = () => {
 
             }} type="submit">submit
             </button>
+
+            <button onClick={async () => {
+                dispatch(postForgotPassword({ email: userDetails.email }))
+            }} className="bg-white text-black p-2 rounded-xl">Forgot password</button>
 
             <button onClick={() => signIn('google')} className="text-red-500 p-2 rounded-xl font-bold bg-white">
                 Sign In with google

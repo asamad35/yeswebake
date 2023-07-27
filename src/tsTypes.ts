@@ -26,3 +26,11 @@ export interface TokenInterface {
     _id: string
 }
 
+
+export interface ResetPasswordPayload {
+    password: string,
+    token: string
+    router: AppRouterInstance
+
+}
+
