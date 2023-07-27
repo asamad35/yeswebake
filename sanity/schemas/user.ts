@@ -27,6 +27,21 @@ export default defineType({
             name: 'userImage',
             type: 'image',
             title: 'User image'
-        }
+        },
+        {
+            name: 'isAdmin',
+            type: 'boolean',
+            title: 'Is Admin'
+        },
+        {
+            name: 'forgotPasswordToken',
+            type: 'string',
+            title: 'Forgot Password Token'
+        },
+        {
+            name: 'forgotPasswordExpiry',
+            type: 'number',
+            title: 'Forgot Password Expiry'
+        },
     ]
 })
