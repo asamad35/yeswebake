@@ -5,7 +5,7 @@ export default function logintest(){
     return(
     
             
-            <div className="mx-auto  bg-yellow-50 md:flex overflow-hidden">
+            <div className="mx-auto bg-slate-50 md:flex">
                 <div className="md:w-1/2 w-full md:h-screen">
                     <img src="https://images.pexels.com/photos/6408290/pexels-photo-6408290.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Cake at the top" className="md:h-screen object-cover h-40 w-full"/>
                 </div>
@@ -33,7 +33,7 @@ export default function logintest(){
                     </div>
                     <label htmlFor="email" className='my-2 '>Email Address</label> <span className="text-pink-600">*</span> 
                     <br />  
-                    <input type="email" id="email" name="email" placeholder="Your email" className='my-2 text-pink-600 p-2 w-full border-2 border-pink-400 rounded-sm outline-none ring-0 placeholder-pink-400'required />
+                    <input type="email" id="email" name="email" placeholder="Your Email" className='my-2 text-pink-600 p-2 w-full border-2 border-pink-400 rounded-sm outline-none ring-0 placeholder-pink-400'required />
                     <br />
                     <label htmlFor="password" className='my-2'>Password <span className="text-pink-600">*</span></label>
                     <br />
