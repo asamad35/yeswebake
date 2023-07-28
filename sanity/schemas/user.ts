@@ -21,11 +21,13 @@ export default defineType({
             name: 'password',
             type: 'string',
             title: 'Password',
+            hidden: ({ parent, value }) => parent?.isThirdParty,
             validation: Rule => Rule.required()
         },
         {
             name: 'userImage',
             type: 'image',
+            hidden: ({ parent, value }) => parent?.isThirdParty,
             title: 'User image'
         },
         {
@@ -34,14 +36,28 @@ export default defineType({
             title: 'Is Admin'
         },
         {
+            name: 'isThirdParty',
+            type: 'boolean',
+            title: 'Is Third Party'
+        },
+        {
             name: 'forgotPasswordToken',
             type: 'string',
-            title: 'Forgot Password Token'
+            title: 'Forgot Password Token',
+            hidden: ({ parent, value }) => parent?.isThirdParty,
+
         },
         {
             name: 'forgotPasswordExpiry',
             type: 'number',
-            title: 'Forgot Password Expiry'
+            title: 'Forgot Password Expiry',
+            hidden: ({ parent, value }) => parent?.isThirdParty,
+
+        },
+        {
+            name: 'thirdPartyUserImage',
+            type: 'string',
+            title: 'Third party user image'
         },
     ]
 })

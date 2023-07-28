@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
         const { email, password } = await request.json();
         // check if user exist by email
         const user = await client.fetch(
-            `*[_type == "user" && email == $email]{email, username, userImage, password}[0]`, { email }
+            `*[_type == "user" && email == $email][0]`, { email }
         );
         if (!user) {
             return NextResponse.json({ message: "User does not exist" }, { status: 400 })

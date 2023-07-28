@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { signIn, signOut, useSession, } from "next-auth/react";
+import { signIn, } from "next-auth/react";
 import { postForgotPassword, postLogin } from "@/thunks/authThunk";
 import { useAppDispatch } from "@/redux/hooks";
 import { LoginInterface } from "@/tsTypes";
@@ -15,21 +15,19 @@ const LoginPage = () => {
 
 
 
-    const { data: session } = useSession();
-    console.log({ session })
 
 
 
-    if (session && session.user) {
-        return (
-            <div className="flex gap-4 ml-auto">
-                <p className="text-sky-600">{session.user.name}</p>
-                <button onClick={() => signOut()} className="text-red-600">
-                    Sign Out
-                </button>
-            </div>
-        );
-    }
+    // if (session && session.user) {
+    //     return (
+    //         <div className="flex gap-4 ml-auto">
+    //             <p className="text-sky-600">{session.user.name}</p>
+    //             <button onClick={() => signOut()} className="text-red-600">
+    //                 Sign Out
+    //             </button>
+    //         </div>
+    //     );
+    // }
     return (
         <div className="flex items-center flex-col gap-10 justify-center h-screen w-screen">
 

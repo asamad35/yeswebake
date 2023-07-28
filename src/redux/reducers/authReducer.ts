@@ -1,7 +1,13 @@
 import { createSlice, current } from "@reduxjs/toolkit";
-import { postLogin } from "@/thunks/authThunk";
+import { postLogin, postSignup, postThirdPartyAuth } from "@/thunks/authThunk";
 
 const initialState = {
+  user: {
+    _id: '',
+    username: '',
+    email: '',
+    image: '',
+  }
 };
 const authReducer = createSlice({
   name: "authReducer",
@@ -13,16 +19,32 @@ const authReducer = createSlice({
     builder
       .addCase(postLogin.fulfilled, (state, action) => {
         console.log('====================================', { payload: action.payload }, '=====================================');
-        // state.user = action.payload
-
-        // state.user = action.payload.data;
-        // state.token = action.payload.token;
-        // action.meta.arg.navigate("/chatUI");
+        state.user = action.payload.data.user
       })
       .addCase(postLogin.pending, (state, action) => {
       })
       .addCase(postLogin.rejected, (state, action) => {
       })
+
+      .addCase(postSignup.fulfilled, (state, action) => {
+        console.log('====================================', { payload: action.payload }, '=====================================');
+        state.user = action.payload.data.newUser
+      })
+      .addCase(postSignup.pending, (state, action) => {
+      })
+      .addCase(postSignup.rejected, (state, action) => {
+      })
+
+      .addCase(postThirdPartyAuth.fulfilled, (state, action) => {
+        console.log('====================================', { payload: action.payload }, '=====================================');
+        state.user = action.payload.data.user
+      })
+      .addCase(postThirdPartyAuth.pending, (state, action) => {
+      })
+      .addCase(postThirdPartyAuth.rejected, (state, action) => {
+      })
+
+
 
   },
 });

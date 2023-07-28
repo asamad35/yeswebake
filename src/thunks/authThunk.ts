@@ -53,3 +53,12 @@ export const postResetPassword = createAsyncThunk("postResetPassword", async (pa
     console.log(error)
   }
 });
+
+export const postThirdPartyAuth = createAsyncThunk("postThirdPartyAuth", async (payload) => {
+  try {
+    const res = await axios.post('/api/thirdpartyauth', payload);
+    return res
+  } catch (error) {
+    console.log(error)
+  }
+});
