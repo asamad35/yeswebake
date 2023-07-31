@@ -1,4 +1,4 @@
-import { TokenInterface } from "@/tsTypes";
+import { TokenInterface } from "@/tsInterfaces";
 import jwt from "jsonwebtoken";
 
 

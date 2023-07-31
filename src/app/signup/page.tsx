@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { useAppDispatch } from '@/redux/hooks'
 import { postSignup } from '@/thunks/authThunk'
-import { SignupType } from '@/tsTypes'
+import { SignupType } from '@/tsInterfaces'
 import { useRouter } from 'next/navigation'
 
 

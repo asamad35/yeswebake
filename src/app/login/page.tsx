@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { signIn, } from "next-auth/react";
 import { postForgotPassword, postLogin } from "@/thunks/authThunk";
 import { useAppDispatch } from "@/redux/hooks";
-import { LoginInterface } from "@/tsTypes";
+import { LoginInterface } from "@/tsInterfaces";
 import { useRouter } from 'next/navigation'
 
 

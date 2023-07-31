@@ -17,6 +17,11 @@ export async function POST(request: NextRequest) {
         }
         console.log({ email, password, user });
 
+        // check third party
+        if (user.isThirdParty) {
+            return NextResponse.json({ message: "Use google to login" }, { status: 400 })
+        }
+
         // check password
         const validPassword = await bcryptjs.compare(password, user.password)
 

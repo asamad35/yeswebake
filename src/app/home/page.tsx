@@ -7,6 +7,7 @@ import { signOut, useSession } from "next-auth/react"
 import dynamic from 'next/dynamic'
 
 
+
 const HomePage = () => {
     const dispatch = useAppDispatch()
     const authReducer = useAppSelector(state => state.authReducer)

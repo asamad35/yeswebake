@@ -9,14 +9,12 @@ export interface SignupType {
     username: string,
     email: string,
     password: string,
-    router?: AppRouterInstance
 
 }
 
 export interface LoginInterface {
     email: string,
     password: string,
-    router?: AppRouterInstance
 }
 
 export interface TokenInterface {
@@ -30,7 +28,4 @@ export interface TokenInterface {
 export interface ResetPasswordPayload {
     password: string,
     token: string
-    router: AppRouterInstance
-
 }
-

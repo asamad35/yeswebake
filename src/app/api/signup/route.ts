@@ -15,7 +15,6 @@ export async function POST(request: NextRequest) {
             `*[_type == "user" && email == $email][0]`, { email }
         );
 
-        console.log({ user })
 
         if (user) {
             return NextResponse.json({ message: "User already exists" }, { status: 400 })
@@ -25,7 +24,6 @@ export async function POST(request: NextRequest) {
 
         const newUser = await client.create({ username, email, password: hashPassword, _type: 'user' },)
 
-        console.log(newUser);
         const response = NextResponse.json({ newUser, success: true, message: "user created successfully" }, { status: 200 })
 
         createAndSetToken({ ...newUser, response })

@@ -23,7 +23,6 @@ export async function POST(request: NextRequest) {
 
         // sending mail
         const res = await sendEmail({ email, hashedToken })
-        console.log({ res })
 
 
 

@@ -14,7 +14,6 @@ export async function POST(request: NextRequest) {
             `*[_type == "user" && email == $email && isThirdParty == true][0]`, { email }
         );
 
-        console.log({ user })
 
         if (user) {
             return NextResponse.json({ message: "User already exists", user }, { status: 200 })
@@ -24,7 +23,6 @@ export async function POST(request: NextRequest) {
 
         user = await client.create({ _type: 'user', username, email, thirdPartyUserImage, isThirdParty: true })
 
-        console.log(user);
         const response = NextResponse.json({ user, success: true, message: "user created successfully" }, { status: 200 })
 
 

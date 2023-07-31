@@ -1,0 +1,12 @@
+version: "3"
+services:
+  yeswebake:
+    image: yeswebake
+    build: .
+    ports:
+      - "3000:3000"
+    container_name: yeswebake_container
+
+volumes:
+  yeswebake-data:
+    driver: local

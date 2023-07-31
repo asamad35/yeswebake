@@ -15,7 +15,6 @@ export async function POST(request: NextRequest) {
         forgotPasswordExpiry > $currentTime 
         ][0]`, { token, currentTime: Date.now() });
 
-        console.log({ user })
 
         if (!user) {
             return NextResponse.json({ message: "Invalid token" }, { status: 400 })

@@ -1,8 +1,8 @@
-import { LoginInterface, ResetPasswordPayload, RouterInterface, SignupType } from "@/tsTypes";
+import { LoginInterface, ResetPasswordPayload, RouterInterface, SignupType } from "@/tsInterfaces";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
 
-export const postLogin = createAsyncThunk("postLogin", async (payload: LoginInterface) => {
+export const postLogin = createAsyncThunk("postLogin", async (payload: LoginInterface & RouterInterface) => {
   try {
     const { email, password } = payload
     const res = await axios.post('/api/login', { email, password })
@@ -14,7 +14,7 @@ export const postLogin = createAsyncThunk("postLogin", async (payload: LoginInte
 });
 
 
-export const postSignup = createAsyncThunk("postSignup", async (payload: SignupType) => {
+export const postSignup = createAsyncThunk("postSignup", async (payload: SignupType & RouterInterface) => {
   try {
     const res = await axios.post('/api/signup', payload)
     payload.router!.push('/home');
@@ -44,7 +44,7 @@ export const postForgotPassword = createAsyncThunk("postForgotPassword", async (
   }
 });
 
-export const postResetPassword = createAsyncThunk("postResetPassword", async (payload: ResetPasswordPayload) => {
+export const postResetPassword = createAsyncThunk("postResetPassword", async (payload: ResetPasswordPayload & RouterInterface) => {
   try {
     const res = await axios.post('/api/resetpassword', { token: payload.token, password: payload.password });
     payload.router!.push('/login');
